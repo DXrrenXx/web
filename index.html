@@ -167,29 +167,23 @@
   <main>
     <div class="text-center mb-8">
       <h2>高一体育赛事对战查询</h2>
-      <p>查看赛程安排与班级积分排行榜</p>
+      <p>※ 请各班体委添加微信：D_Xrren（微信号）以上报比赛比分</p>
     </div>
-    <!-- 项目选择 -->
     <div class="bg-white rounded-lg shadow-md p-6 mb-6">
       <h3 class="text-lg font-semibold text-gray-800 mb-4">选择项目</h3>
       <div class="flex flex-wrap gap-2" id="sport-buttons">
-        <!-- 动态生成项目按钮 -->
       </div>
     </div>
-    <!-- 赛程查询 -->
     <div class="bg-white rounded-lg shadow-md p-6 mb-8">
       <h3 class="text-lg font-semibold text-gray-800 mb-4">赛程查询</h3>
       <div class="flex flex-wrap gap-2 mb-6" id="week-buttons">
-        <!-- 动态生成按钮 -->
       </div>
       <div class="bg-gray-50 rounded-md p-4">
         <h4 class="font-semibold text-gray-800 mb-3" id="current-week-title">第1周赛程</h4>
         <ul id="match-list">
-          <!-- 动态生成比赛列表 -->
         </ul>
       </div>
     </div>
-    <!-- 积分排行榜 (动态加载) -->
     <div class="bg-white rounded-lg shadow-md p-6">
       <h3 class="text-lg font-semibold text-gray-800 mb-4">班级积分排行榜 (<span id="leaderboard-sport-title">篮球</span>)</h3>
       <div class="overflow-x-auto">
@@ -202,7 +196,6 @@
             </tr>
           </thead>
           <tbody id="leaderboard-body">
-            <!-- 动态生成排行榜 -->
             <tr>
               <td colspan="3" class="loading">正在加载积分数据... 等着吧hh</td>
             </tr>
@@ -212,6 +205,7 @@
       <div class="mt-6 bg-blue-50 rounded-md p-4">
         <h4 class="font-medium text-gray-800 mb-2">比赛说明</h4>
         <ul class="text-sm text-gray-700 space-y-1">
+          <li>※ 请各班体委添加微信：D_Xrren（微信号）以上报比赛比分。</li>
           <li>• 篮球胜者计2分，负者计1分。</li>
           <li>• 足球平局计1分，胜者计3分，负者计0分。</li>
           <li>• 排球胜者计2分，负者计1分，弃权0分。</li>
@@ -228,13 +222,10 @@
     <p class="mt-1">Made by D_Xrren</p>
   </footer>
   <script>
-    // 从 data.json 加载所有项目赛程数据
     let allSportsData = {};
-    let currentSport = "篮球"; // 默认项目
+    let currentSport = "篮球";
     let selectedWeek = 1;
-    let themeConfig = {}; // 用于存储主题配置
-
-    // 映射项目名称到对应的积分数据文件名
+    let themeConfig = {};
     const sportToDataFileMap = {
       "篮球": "data2.json",
       "足球": "data3.json",
@@ -242,31 +233,25 @@
       "女排": "data5.json",
       "乒乓球": "data6.json"
     };
-
-    // 辅助函数：为URL添加时间戳以避免缓存
     function getNoCacheUrl(url) {
         const separator = url.includes('?') ? '&' : '?';
         return `${url}${separator}_t=${Date.now()}`;
     }
-
-    // 加载赛程数据
     fetch(getNoCacheUrl('data.json'))
       .then(response => response.json())
       .then(data => {
         allSportsData = data.sports;
-        themeConfig = data.theme || {}; // 读取主题配置
+        themeConfig = data.theme || {};
         // 渲染
         renderSportButtons();
         renderWeekButtons();
         renderMatchList();
-        loadAndRenderLeaderboard(); // 加载并渲染默认项目的排行榜
+        loadAndRenderLeaderboard(); 
       })
       .catch(error => {
         console.error('加载赛程数据失败:', error);
         alert('未能加载比赛数据，请确认 data.json 文件存在且格式正确。');
       });
-
-    // 渲染项目按钮
     function renderSportButtons() {
       const container = document.getElementById('sport-buttons');
       container.innerHTML = '';
@@ -280,17 +265,15 @@
         btn.textContent = sport;
         btn.onclick = () => {
           currentSport = sport;
-          selectedWeek = 1; // 切换项目时重置到第1周
+          selectedWeek = 1;
           renderSportButtons();
           renderWeekButtons();
           renderMatchList();
-          loadAndRenderLeaderboard(); // 切换项目时加载对应的排行榜
+          loadAndRenderLeaderboard(); 
         };
         container.appendChild(btn);
       });
     }
-
-    // 渲染周次按钮 (基于当前项目)
     function renderWeekButtons() {
       const container = document.getElementById('week-buttons');
       container.innerHTML = '';
@@ -310,8 +293,6 @@
         container.appendChild(btn);
       });
     }
-
-    // 渲染当前项目和周次的比赛列表
     function renderMatchList() {
       const title = document.getElementById('current-week-title');
       title.textContent = `${currentSport} - 第${selectedWeek}周赛程`;
@@ -333,27 +314,22 @@
         const matchSpan = document.createElement('span');
         matchSpan.textContent = match.teams;
         matchDiv.appendChild(matchSpan);
-        // --- 动态设置颜色 ---
         const resultSpan = document.createElement('span');
         resultSpan.classList.add('text-xs', 'px-2', 'py-1', 'rounded');
         resultSpan.textContent = match.result;
         let colorConfig;
-        // 优先匹配具体的结果名称（如 "未开始"）
         if (themeConfig.colors && themeConfig.colors[match.result]) {
           colorConfig = themeConfig.colors[match.result];
         } else {
-          // 如果没有具体匹配，则使用 "default" 配置
           colorConfig = themeConfig.colors?.default;
         }
         if (colorConfig) {
           resultSpan.style.backgroundColor = colorConfig.bg;
           resultSpan.style.color = colorConfig.text;
         } else {
-          // 如果主题配置中都没有，则使用默认的灰色（可选）
           resultSpan.style.backgroundColor = '#e0e0e0';
           resultSpan.style.color = '#000000';
         }
-        // --- 结束 ---
         matchDiv.appendChild(resultSpan);
         li.appendChild(matchDiv);
         const scoreDiv = document.createElement('div');
@@ -363,24 +339,16 @@
         list.appendChild(li);
       });
     }
-
-    // 根据项目名称加载对应的积分数据并渲染排行榜
     function loadAndRenderLeaderboard() {
         const leaderboardTitle = document.getElementById('leaderboard-sport-title');
         const tbody = document.getElementById('leaderboard-body');
-
-        // 更新标题
         leaderboardTitle.textContent = currentSport;
-
-        // 显示加载状态
-        tbody.innerHTML = '<tr><td colspan="3" class="loading">正在加载积分数据...</td></tr>';
-
+        tbody.innerHTML = '<tr><td colspan="3" class="loading">正在加载积分数据... 等着吧hh</td></tr>';
         const dataFileName = sportToDataFileMap[currentSport];
         if (!dataFileName) {
              tbody.innerHTML = '<tr><td colspan="3" class="loading">该项目暂无积分数据。</td></tr>';
              return;
         }
-
         fetch(getNoCacheUrl(dataFileName))
             .then(response => {
                 if (!response.ok) {
@@ -389,7 +357,6 @@
                 return response.json();
             })
             .then(data => {
-                // 假设 JSON 结构为 { "class_points": [...] }
                 const classPointsData = data.class_points || [];
                 renderLeaderboard(classPointsData);
             })
@@ -398,30 +365,22 @@
                 tbody.innerHTML = `<tr><td colspan="3" class="loading">加载积分数据失败: ${error.message}</td></tr>`;
             });
     }
-
-    // 渲染排行榜（传入特定项目的积分数据）
     function renderLeaderboard(classPointsData) {
       const tbody = document.getElementById('leaderboard-body');
       tbody.innerHTML = '';
-
       if (!classPointsData || classPointsData.length === 0) {
           const tr = document.createElement('tr');
           tr.innerHTML = `<td colspan="3" class="loading">暂无积分数据。</td>`;
           tbody.appendChild(tr);
           return;
       }
-
-      // 1. 按积分降序排序，积分相同时按班级名称升序排序 (支持中文数字排序)
       const sortedClasses = [...classPointsData].sort((a, b) => {
         if (b.points !== a.points) {
-          return b.points - a.points; // 积分高的排前面
+          return b.points - a.points;
         } else {
-          // 积分相同时，按班级名称（字符串）升序排序
-          // 使用 localeCompare 支持中文排序，确保 "1班" < "10班"
           return a.className.localeCompare(b.className, 'zh-CN', { numeric: true, sensitivity: 'base' });
         }
       });
-      // 2. 渲染表格
       sortedClasses.forEach((item, index) => {
         const tr = document.createElement('tr');
         tr.innerHTML = `
@@ -434,5 +393,4 @@
     }
   </script>
 </body>
-
 </html>

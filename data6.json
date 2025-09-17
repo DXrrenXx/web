@@ -1,9 +1,9 @@
 {
   "class_points": [
-    { "className": "1班", "points": 0 },
-    { "className": "2班", "points": 0 },
-    { "className": "3班", "points": 0 },
-    { "className": "4班", "points": 0 },
+    { "className": "1班", "points": 2 },
+    { "className": "2班", "points": 1 },
+    { "className": "3班", "points": 1 },
+    { "className": "4班", "points": 2 },
     { "className": "5班", "points": 0 },
     { "className": "6班", "points": 0 },
     { "className": "7班", "points": 0 },
