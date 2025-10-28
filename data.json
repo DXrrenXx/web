@@ -25,8 +25,7 @@
       {
         "week": 4,
         "matches": [
-          { "teams": "5班 vs 8班", "result": "未开始", "score": "0:0" },
-          { "teams": "6班 vs 7班", "result": "未开始", "score": "0:0" }
+          { "teams": "12班 vs 14班", "result": "未开始", "score": "0:0" }
         ]
       },
       {
@@ -46,7 +45,8 @@
       {
         "week": 7,
         "matches": [
-          { "teams": "12班 vs 13班", "result": "未开始", "score": "0:0" }
+          { "teams": "5班 vs 8班", "result": "未开始", "score": "0:0" },
+          { "teams": "6班 vs 7班", "result": "未开始", "score": "0:0" }
         ]
       },
       {
@@ -98,7 +98,8 @@
       {
         "week": 3,
         "matches": [
-          { "teams": "12班 vs 13班", "result": "未开始", "score": "0:0" }
+          { "teams": "5班 vs 7班", "result": "未开始", "score": "0:0" },
+          { "teams": "12班 vs 14班", "result": "未开始", "score": "0:0" }
         ]
       },
       {
@@ -111,7 +112,7 @@
       {
         "week": 5,
         "matches": [
-          { "teams": "12班 vs 14班", "result": "未开始", "score": "0:0" }
+          { "teams": "12班 vs 13班", "result": "未开始", "score": "0:0" }
         ]
       },
       {
@@ -148,7 +149,6 @@
       {
         "week": 11,
         "matches": [
-          { "teams": "5班 vs 7班", "result": "未开始", "score": "0:0" },
           { "teams": "6班 vs 8班", "result": "未开始", "score": "0:0" }
         ]
       },
