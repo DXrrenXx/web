@@ -1,15 +1,61 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="zh-CN">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TFMS</title>
-  <script type="module"
-          src="https://6vyxb1j5dyg1.space.minimaxi.com/assets/index-COkBYvqk.js"></script>
-  <link rel="stylesheet"
-        href="https://6vyxb1j5dyg1.space.minimaxi.com/assets/index-bZ_Z4YsK.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>系统更新通知</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+        
+        .container {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .link {
+            font-size: 24px;
+            color: #007bff;
+            text-decoration: none;
+            padding: 15px 30px;
+            border: 2px solid #007bff;
+            border-radius: 8px;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+        
+        .link:hover {
+            background-color: #007bff;
+            color: white;
+            transform: scale(1.05);
+        }
+        
+        @media (max-width: 768px) {
+            .link {
+                font-size: 18px;
+                padding: 12px 24px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .link {
+                font-size: 16px;
+                padding: 10px 20px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div id="root"></div>
+    <div class="container">
+        <a href="https://tfms.pages.dev/" class="link">系统更新 新网址：https://tfms.pages.dev/</a>
+    </div>
 </body>
 </html>
